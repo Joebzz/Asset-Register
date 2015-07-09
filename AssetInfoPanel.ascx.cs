@@ -67,13 +67,18 @@ namespace AssetRegister
             }
         }
         
+        /// <summary>
+        /// Function to enter the Subnet for each track when the Track Drop Down is changed
+        /// It will only modify if it does not find a valid IP
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddlTrack_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tbIPAddress.Text == "")
+            if (tbIPAddress.Text == "" || tbIPAddress.Text.EndsWith("."))
             {
-                Track trk = new Track();
-                trk.getTrack(ddlTrack.SelectedIndex);
-                tbIPAddress.Text = trk.IPSubnet;
+                Track trk = new Track().getTrack(ddlTrack.SelectedIndex); // get the index of the track ddl
+                tbIPAddress.Text = trk.IPSubnet.TrimEnd('#'); // Remove the trailing # symbol
             }
         }
         /// <summary>

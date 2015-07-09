@@ -16,7 +16,7 @@
 <div id="divAssetDetails" class="AssetDetails" runat="server">
     <div class="AssetDetailsRow">
         <label>Track: </label>
-        <asp:DropDownList ID="ddlTrack" runat="server" OnSelectedIndexChanged="ddlTrack_SelectedIndexChanged"/>
+        <asp:DropDownList ID="ddlTrack" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlTrack_SelectedIndexChanged"/>
     </div>
     <div class="AssetDetailsRow">
         <label>Hostname: </label>

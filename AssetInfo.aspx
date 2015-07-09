@@ -13,6 +13,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<link rel="icon" href="http://172.18.25.20/IT_AssetRegister/favicon.ico" type="image/x-icon">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
     <form runat="server">
