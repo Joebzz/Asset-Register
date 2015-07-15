@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="AssetRegister.DefaultMaster" %>
+
+<!DOCTYPE html>
+<!-- Include Custom Styles -->
+<link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+
+<!-- Include JQuery & JQuery-UI -->
+<script type="text/javascript" src="/Scripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+<link href="/Scripts/jquery-ui-1.11.2/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+<!-- Include Bootstrap  -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!-- Include Custom JavaScript functions -->
+<script type="text/javascript" src="/Content/general.js" ></script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:LinkButton id="LoginLink" Text="Logout" OnClick="LoginLink_OnClick" runat="server" CssClass="RightBtn" />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">                    
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

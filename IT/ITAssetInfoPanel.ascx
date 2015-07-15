@@ -1,17 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="True" Inherits="AssetRegister.AssetInfoPanel" Codebehind="AssetInfoPanel.ascx.cs" %>
-
-<script type="text/javascript">
-    $(function () {
-        $(".DatePicker").datepicker({
-            dateFormat: 'd-M-yy',
-            showOn: 'button',
-            buttonImageOnly: true,
-            buttonImage: '/Content/images/calendar.png'
-        });
-    });
-</script>
-
-<title id="title" runat="server">Edit IT Asset</title>
+﻿<%@ Control Language="C#" AutoEventWireup="True" Inherits="AssetRegister.ITAssetInfoPanel" Codebehind="ITAssetInfoPanel.ascx.cs" %>
 
 <div id="divAssetDetails" class="AssetDetails" runat="server">
     <div class="AssetDetailsRow">
@@ -51,11 +38,11 @@
         <asp:TextBox ID="tbDescription" runat="server" />
     </div>
     <div class="AssetDetailsRow">
-        <label>Service Tag: </label>
+        <label>Service Tag / Serial Code: </label>
         <asp:TextBox ID="tbServiceTag" runat="server" />
     </div>
     <div class="AssetDetailsRow">
-        <label>Express Code: </label>
+        <label>Express Code / Product Key: </label>
         <asp:TextBox ID="tbExpressCode" runat="server" />
     </div>
      <div class="AssetDetailsRow">
@@ -67,8 +54,16 @@
         <asp:TextBox ID="tbComments" TextMode="multiline" Rows="3" Width="300px" runat="server" CssClass="DatePicker" />
     </div>
     <div class="AssetDetailsRow">
-        <label>Inactive: </label>
-         <asp:CheckBox ID="chkShowInactive" Checked="false" runat="server" />
+        <label>Cost Value: </label>
+        <asp:TextBox ID="tbCostValue" runat="server" />
+    </div>
+    <div class="AssetDetailsRow">
+        <label>Current Value: </label>
+        <asp:TextBox ID="tbCurrentValue" runat="server" />
+    </div>
+    <div class="AssetDetailsRow">
+        <label>Unusable / EOL: </label>
+        <asp:CheckBox ID="chkShowInactive" Checked="false" runat="server" />
     </div>
     <div class="AssetDetailsButtons">
         <asp:Button ID="btnCancel" ClientIDMode="Static" CssClass="btn btn-danger LeftBtn" runat="server" Text="Cancel" OnClick="btnCancel_Click" />

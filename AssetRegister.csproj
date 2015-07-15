@@ -83,25 +83,57 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetInfoPanel.ascx.cs">
-      <DependentUpon>AssetInfoPanel.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetInfoPanel.ascx.designer.cs">
-      <DependentUpon>AssetInfoPanel.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="AssetInfo.aspx.cs">
-      <DependentUpon>AssetInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetInfo.aspx.designer.cs">
-      <DependentUpon>AssetInfo.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.Master.cs">
+      <DependentUpon>Default.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.Master.designer.cs">
+      <DependentUpon>Default.Master</DependentUpon>
+    </Compile>
+    <Compile Include="General\GeneralAssetInfo.aspx.cs">
+      <DependentUpon>GeneralAssetInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\GeneralAssetInfoPanel.ascx.cs">
+      <DependentUpon>GeneralAssetInfoPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\GeneralAssetInfoPanel.ascx.designer.cs">
+      <DependentUpon>GeneralAssetInfoPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="IT\ITAssetInfoPanel.ascx.cs">
+      <DependentUpon>ITAssetInfoPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IT\ITAssetInfoPanel.ascx.designer.cs">
+      <DependentUpon>ITAssetInfoPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="IT\ITAssetInfo.aspx.cs">
+      <DependentUpon>ITAssetInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IT\ITAssetInfo.aspx.designer.cs">
+      <DependentUpon>ITAssetInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IT\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IT\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
@@ -111,19 +143,29 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\AssetType.cs" />
+    <Compile Include="Models\GeneralAsset.cs" />
     <Compile Include="Models\OS.cs" />
     <Compile Include="Models\Track.cs" />
-    <Compile Include="Models\Asset.cs" />
+    <Compile Include="Models\ITAsset.cs" />
     <Compile Include="Models\DeviceType.cs" />
     <Compile Include="Models\Manufacture.cs" />
     <Compile Include="Database\PetaPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AssetInfoPanel.ascx" />
-    <Content Include="AssetInfo.aspx" />
+    <Content Include="Content\general.js" />
     <Content Include="Default.aspx" />
+    <Content Include="favicon_general.ico" />
+    <Content Include="favicon_it.ico" />
+    <Content Include="General\GeneralAssetInfo.aspx" />
+    <Content Include="General\GeneralAssetInfoPanel.ascx" />
+    <Content Include="IT\ITAssetInfoPanel.ascx" />
+    <Content Include="IT\ITAssetInfo.aspx" />
+    <Content Include="General\Default.aspx" />
+    <Content Include="IT\Default.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\index.html" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -192,6 +234,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="General\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IT\web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

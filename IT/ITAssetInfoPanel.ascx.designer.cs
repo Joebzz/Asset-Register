@@ -10,16 +10,7 @@
 namespace AssetRegister {
     
     
-    public partial class AssetInfoPanel {
-        
-        /// <summary>
-        /// title control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl title;
+    public partial class ITAssetInfoPanel {
         
         /// <summary>
         /// divAssetDetails control.
@@ -146,6 +137,24 @@ namespace AssetRegister {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbComments;
+        
+        /// <summary>
+        /// tbCostValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCostValue;
+        
+        /// <summary>
+        /// tbCurrentValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCurrentValue;
         
         /// <summary>
         /// chkShowInactive control.

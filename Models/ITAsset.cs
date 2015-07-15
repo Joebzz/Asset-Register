@@ -9,7 +9,7 @@ namespace AssetRegister.Poco
 {
     [TableName("IT_Assets")] // Name of the Table in the Database
     [PrimaryKey("IdtAsset")] // Primary Key of the Table
-	public class Asset
+	public class ITAsset
 	{
         private PetaPoco.Database db = new PetaPoco.Database("connectionString"); // Use the connectionString from the Web.Config to connect to the DB
 
@@ -27,8 +27,10 @@ namespace AssetRegister.Poco
 		public string IPAddress {get; set;}
 		public string ServiceTag {get; set;}
 		public string ExpressCode {get; set;}
-        public DateTime ShipDate { get; set; }
+        public DateTime? ShipDate { get; set; }
         public string Comments { get; set; }
+        public int CostValue { get; set; }
+        public int CurrentValue { get; set; }
         public int Inactive { get; set; }
 
         // Results Columns used for the Export functionality
@@ -49,21 +51,21 @@ namespace AssetRegister.Poco
         /// </summary>
         /// <param name="id">The ID of the Asset</param>
         /// <returns>The Asset foor the given ID</returns>
-        public Asset getAsset(int id)
+        public ITAsset getAsset(int id)
         {
             // Sql WHERE To set what to look for in the DB
-            var Asset = db.FirstOrDefault<Asset>("WHERE IdtAsset = '" + id + "'");
+            var Asset = db.FirstOrDefault<ITAsset>("WHERE IdtAsset = '" + id + "'");
             return Asset;
         }
 
         /// <summary>
-        /// Function to return all of the Assets in the AssetRegister Table
+        /// Function to return all of the Assets in the IT_Assets Table
         /// </summary>
         /// <returns>All of the assets for the gridview databind function</returns>
-        public List<Asset> getAssets()
+        public List<ITAsset> getAssets()
         {
-            // Returns all data from the AssetRegister Table
-            List<Asset> Assets = db.Fetch<Asset>();
+            // Returns all data from the IT_Assets Table
+            List<ITAsset> Assets = db.Fetch<ITAsset>();
             return Assets;
         }
 
@@ -72,9 +74,9 @@ namespace AssetRegister.Poco
         /// </summary>
         /// <param name="inactive">1 or 0 to sdhow Inactive Assets or Active</param>
         /// <returns>List of the assets for the gridview databind function</returns>
-        public List<Asset> getAssets(int inactive)
+        public List<ITAsset> getAssets(int inactive)
         {
-            List<Asset> Assets = db.Fetch<Asset>("WHERE Inactive=" + inactive + " ORDER BY ShipDate ASC"); // Order the results by ShipDate
+            List<ITAsset> Assets = db.Fetch<ITAsset>("WHERE Inactive=" + inactive + " ORDER BY ShipDate ASC"); // Order the results by ShipDate
             return Assets;
         }
 
@@ -86,7 +88,7 @@ namespace AssetRegister.Poco
         /// <param name="hostname">Hostname String used to search for the Hostname</param>
         /// <param name="ip">IP String used to search for the IP</param>
         /// <returns>List of the assets for the gridview databind function</returns>
-        public List<Asset> getAssets(string description, string hostname, string ip)
+        public List<ITAsset> getAssets(string description, string hostname, string ip)
         {
             // Create the sql string that will be used to query the Table 
             string sqlStr = " WHERE ";
@@ -99,7 +101,7 @@ namespace AssetRegister.Poco
             else if (description == "" && hostname == "" && ip != "") // Search on the IPAddress using SQL LIKE
                 sqlStr += "IPAddress LIKE '%" + ip + "%'";
 
-            List<Asset> Assets = db.Fetch<Asset>(sqlStr + " ORDER BY ShipDate ASC"); // Order the results by ShipDate
+            List<ITAsset> Assets = db.Fetch<ITAsset>(sqlStr + " ORDER BY ShipDate ASC"); // Order the results by ShipDate
             return Assets;
         }
 
@@ -114,7 +116,7 @@ namespace AssetRegister.Poco
         /// <param name="deptId">ID of the Department can be null</param>
         /// <param name="showInactive">Boolean Equivelant either a 1 (show Inactive) or 0 (dont show inactive)</param>
         /// <returns>List of the assets for the gridview databind function</returns>
-        public List<Asset> getAssets(int? trkId, int? devId, int? osId, int? manId, int? deptId, int showInactive)
+        public List<ITAsset> getAssets(int? trkId, int? devId, int? osId, int? manId, int? deptId, int showInactive)
         {
             // Create the sql string that will be used to query the Table 
             string sqlStr = " WHERE Inactive=" + showInactive;
@@ -138,7 +140,7 @@ namespace AssetRegister.Poco
             if (deptId.HasValue)
                 sqlStr += " AND IdtDepartment=" + deptId.Value;
 
-            List<Asset> Assets = db.Fetch<Asset>(sqlStr + " ORDER BY ShipDate ASC"); // Order the results by ShipDate in ascending order
+            List<ITAsset> Assets = db.Fetch<ITAsset>(sqlStr + " ORDER BY ShipDate ASC"); // Order the results by ShipDate in ascending order
             return Assets;
         }
         
@@ -152,10 +154,10 @@ namespace AssetRegister.Poco
         /// <param name="manId">ID of the Mnaufacture can be null</param>
         /// <param name="deptId">ID of the Department can be null</param>
         /// <param name="showInactive">Boolean Equivelant either a 1 (show Inactive) or 0 (dont show inactive)</param>
-        /// <returns>List of tnhe assets for the export functions</returns>
-        public IList<AssetExport> getAssetsForExport(int? trkId, int? devId, int? osId, int? manId, int? deptId, int showInactive)
-        {            
-            string sqlSelectStr = "SELECT NamTrack, NamDeviceType, NamManufacture, NamOS, NamDepartment, Model, Description, Hostname, IPAddress, ServiceTag, ExpressCode, ShipDate, Comments FROM AssetRegister ass LEFT JOIN LookupTrack lt on ass.IdtTrack=lt.IdtTrack JOIN LookupDeviceType ldt on ldt.IdtDeviceType=ass.IdtDeviceType JOIN LookupManufacture lm on lm.IdtManufacture=ass.IdtManufacture JOIN LookupOS lo on lo.IdtOS=ass.IdtOS JOIN LookupDepartment ld on ld.IdtDepartment=ass.IdtDepartment";
+        /// <returns>List of the assets for the export functions</returns>
+        public IList<ITAssetExport> getAssetsForExport(int? trkId, int? devId, int? osId, int? manId, int? deptId, int showInactive)
+        {
+            string sqlSelectStr = "SELECT NamTrack, NamDeviceType, NamManufacture, NamOS, NamDepartment, Model, Description, Hostname, IPAddress, ServiceTag, ExpressCode, CONVERT(VARCHAR(11),ShipDate, 106) as ShipDate, Comments, CostValue, CurrentValue FROM IT_Assets ass LEFT JOIN LookupTrack lt on ass.IdtTrack=lt.IdtTrack JOIN LookupDeviceType ldt on ldt.IdtDeviceType=ass.IdtDeviceType JOIN LookupManufacture lm on lm.IdtManufacture=ass.IdtManufacture JOIN LookupOS lo on lo.IdtOS=ass.IdtOS JOIN LookupDepartment ld on ld.IdtDepartment=ass.IdtDepartment";
 
             // Create the sql string that will be used to query the Table 
             string sqlStr = " WHERE Inactive=" + showInactive;
@@ -179,7 +181,7 @@ namespace AssetRegister.Poco
             if (deptId.HasValue)
                 sqlStr += " AND ass.IdtDepartment=" + deptId.Value;
 
-            var Assets = db.Fetch<AssetExport>(sqlSelectStr + sqlStr);
+            var Assets = db.Fetch<ITAssetExport>(sqlSelectStr + sqlStr + " ORDER BY ass.IdtTrack");
 
             return Assets;
         }
@@ -188,7 +190,7 @@ namespace AssetRegister.Poco
         /// Update the Asset
         /// </summary>
         /// <param name="asset">The Asset that is to be updated</param>
-        public void UpdateAsset(Asset asset)
+        public void UpdateAsset(ITAsset asset)
         {
             db.Update(asset);
         }
@@ -197,13 +199,13 @@ namespace AssetRegister.Poco
         /// Create the Asset
         /// </summary>
         /// <param name="asset">The Asset that is to be created</param>
-        public void CreateAsset(Asset asset)
+        public void CreateAsset(ITAsset asset)
         {
             db.Save(asset);
         }
     }
 
-    public class AssetExport
+    public class ITAssetExport
     {
         // Variables for the Results Export Functionality 
         // Used to creat the Excel File from the Data
@@ -218,7 +220,9 @@ namespace AssetRegister.Poco
         public string IPAddress { get; set; }
         public string ServiceTag { get; set; }
         public string ExpressCode { get; set; }
-        public DateTime ShipDate { get; set; }
+        public string ShipDate { get; set; }
+        public string CostValue { get; set; }
+        public string CurrentValue { get; set; }
         public string Comments { get; set; }
     }
 }

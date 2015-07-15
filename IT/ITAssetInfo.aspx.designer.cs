@@ -10,6 +10,6 @@
 namespace AssetRegister {
     
     
-    public partial class AssetInfo {
+    public partial class ITAssetInfo {
     }
 }

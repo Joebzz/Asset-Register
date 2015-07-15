@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace AssetRegister
 {
-    public partial class AssetInfoPanel : System.Web.UI.UserControl
+    public partial class ITAssetInfoPanel : System.Web.UI.UserControl
     {
         /// <summary>
         /// Function that runs when the page is being loaded.
@@ -33,14 +33,14 @@ namespace AssetRegister
                 if (!int.TryParse(Request.QueryString["AssetId"], out assetID))
                 {
                     // Set the Page Title
-                    title.InnerText = "New IT Asset";
+                    Page.Title = "New IT Asset";
                 }
                 else
                 {
-                    Asset asset = new Asset().getAsset(assetID);
+                    ITAsset asset = new ITAsset().getAsset(assetID);
 
                     // Set the Page Title
-                    title.InnerText = asset.Description;
+                    Page.Title = asset.Description;
 
                     // set the selected index's in the dropdown list
                     ddlDeviceType.SelectedValue = asset.IdtDeviceType.ToString();
@@ -55,7 +55,12 @@ namespace AssetRegister
                     tbServiceTag.Text = asset.ServiceTag;
                     tbHostname.Text = asset.Hostname;
                     tbIPAddress.Text = asset.IPAddress;
-                    tbShipDate.Text = asset.ShipDate.ToString("dd-MMM-yyyy");
+
+                    if (!asset.ShipDate.HasValue)
+                        tbShipDate.Text = "";
+                    else
+                        tbShipDate.Text = asset.ShipDate.Value.ToString("dd-MMM-yyyy");
+                    
                     tbComments.Text = asset.Comments;
 
                     // Set the checkbox to show if the asset is inactive
@@ -144,7 +149,7 @@ namespace AssetRegister
                 int assetID;
                 if (!int.TryParse(Request.QueryString["AssetId"], out assetID))
                 {
-                    Asset asset = new Asset();
+                    ITAsset asset = new ITAsset();
 
                     // Assign all the values to the values from the controls
                     asset.IdtTrack = int.Parse(ddlTrack.SelectedValue);
@@ -159,7 +164,13 @@ namespace AssetRegister
                     asset.IPAddress = tbIPAddress.Text;
                     asset.ServiceTag = tbServiceTag.Text;
                     asset.ExpressCode = tbExpressCode.Text;
-                    asset.ShipDate = DateTime.Parse(tbShipDate.Text);
+
+                    DateTime outDate;
+                    if (!DateTime.TryParse(tbShipDate.Text, out outDate))
+                        asset.ShipDate = default(DateTime);
+                    else
+                        asset.ShipDate = outDate;
+
                     asset.Comments = tbComments.Text;
                     
                     // Set the flag to check if its active or inactive assets to display
@@ -176,7 +187,7 @@ namespace AssetRegister
                 else
                 {
                     // Return the Asset using the assetID using the Asset class
-                    Asset asset = new Asset().getAsset(assetID);
+                    ITAsset asset = new ITAsset().getAsset(assetID);
 
                     // Assign all the values to the values from the controls
                     asset.IdtTrack = int.Parse(ddlTrack.SelectedValue);
@@ -191,7 +202,13 @@ namespace AssetRegister
                     asset.IPAddress = tbIPAddress.Text;
                     asset.ServiceTag = tbServiceTag.Text;
                     asset.ExpressCode = tbExpressCode.Text;
-                    asset.ShipDate = DateTime.Parse(tbShipDate.Text);
+
+                    DateTime outDate;
+                    if (!DateTime.TryParse(tbShipDate.Text, out outDate))
+                        asset.ShipDate = default(DateTime);
+                    else
+                        asset.ShipDate = outDate;
+
                     asset.Comments = tbComments.Text;
 
                     // Set the flag to check if its active or inactive assets to display
