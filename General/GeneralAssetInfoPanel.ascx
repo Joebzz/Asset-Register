@@ -23,7 +23,7 @@
         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="tbNumAssets" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
     </div>
     <div class="AssetDetailsRow">
-        <label>Other: </label>
+        <label>Other/Serial Number etc: </label>
         <asp:TextBox ID="tbOther" runat="server" />
     </div>
      <div class="AssetDetailsRow">
@@ -43,7 +43,7 @@
         <asp:TextBox ID="tbCurrentValue" runat="server" />
     </div>
     <div class="AssetDetailsRow">
-        <label>Inactive: </label>
+        <label>Unusable / EOL: </label>
         <asp:CheckBox ID="chkShowInactive" Checked="false" runat="server" />
     </div>
     <div class="AssetDetailsButtons">

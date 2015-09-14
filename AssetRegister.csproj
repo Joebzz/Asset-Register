@@ -193,12 +193,6 @@
     <Content Include="Scripts\jquery-ui-1.11.2\jquery-ui.structure.min.css" />
     <Content Include="Scripts\jquery-ui-1.11.2\jquery-ui.theme.css" />
     <Content Include="Scripts\jquery-ui-1.11.2\jquery-ui.theme.min.css" />
-    <Content Include="Scripts\jquery-ui.css" />
-    <Content Include="Scripts\jquery-ui.min.css" />
-    <Content Include="Scripts\jquery-ui.structure.css" />
-    <Content Include="Scripts\jquery-ui.structure.min.css" />
-    <Content Include="Scripts\jquery-ui.theme.css" />
-    <Content Include="Scripts\jquery-ui.theme.min.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -219,8 +213,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui.js" />
-    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />

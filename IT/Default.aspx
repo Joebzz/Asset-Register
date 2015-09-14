@@ -27,15 +27,15 @@
     </div>
     <div class="DivAssetSearch">     
         <h2>Search:</h2>      
-        <label class="ddlLabel" for="tbDescriptionSearch">Description Search</label>
+        <label class="ddlLabel" for="tbDescriptionSearch">Description Search:</label>
         <asp:TextBox ID="tbSearchDescription" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearchDescription" CssClass="btn btn-info Search-btn" runat="server" OnClick="btnSearchDescription_Click" Text="Search Description" /> 
         <br />    
-        <label class="ddlLabel" for="tbSearchHostName">Hostname Search</label>
+        <label class="ddlLabel" for="tbSearchHostName">Hostname Search:</label>
         <asp:TextBox ID="tbSearchHostName" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearchHostName" CssClass="btn btn-info Search-btn" runat="server" OnClick="btnSearchHostName_Click" Text="Search Hostname" /> 
         <br />
-        <label class="ddlLabel" for="tbSearchIp">IP Search</label>
+        <label class="ddlLabel" for="tbSearchIp">IP Search:</label>
         <asp:TextBox ID="tbSearchIp" runat="server">172.17.</asp:TextBox>
         <asp:Button ID="btnSearchIp" CssClass="btn btn-info Search-btn" runat="server" OnClick="btnSearchIp_Click" Text="Search IP" /> 
         <br />
@@ -83,22 +83,19 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                         
-                    <asp:BoundField DataField="Hostname" HeaderText="Hostname" />
+                    <asp:BoundField DataField="Hostname" ControlStyle-CssClass="select-field" HeaderText="Hostname" />
 
-                    <asp:BoundField DataField="Description" HeaderText="Description" />
+                    <asp:BoundField DataField="Description" ControlStyle-CssClass="select-field" HeaderText="Description" />
 
-                    <asp:TemplateField HeaderText="Device">
-                        <ItemTemplate>
-                            <asp:Label ID="lblDevice" runat="server"><%# GetDeviceType((int)Eval("IdtDeviceType")) %></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    <asp:BoundField DataField="IPAddress" ControlStyle-CssClass="select-field" HeaderText="IP Address" />
 
-                    <asp:BoundField DataField="IPAddress" HeaderText="IP Address" />
                     <asp:BoundField DataField="Shipdate" HeaderText="Shipdate" DataFormatString="{0:dd-MMM-yyyy}" />
 
-                    <asp:BoundField DataField="Inactive" HeaderText="Inactive" Visible="false"/>
-
-                    <asp:ButtonField Text="Edit" CommandName="Edit" ControlStyle-CssClass="btn btn-primary btn-nolink" HeaderText="Edit" />
+                    <asp:TemplateField HeaderText="Edit">
+                        <ItemTemplate>
+                            <asp:LinkButton Text="Edit" ID="Edit" CommandName="Edit" CssClass="btn btn-primary btn-nolink" runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>

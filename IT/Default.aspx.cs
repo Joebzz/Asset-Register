@@ -212,8 +212,10 @@ namespace AssetRegister
                 row.CssClass = "DataRow";
 
                 ITAsset ass = (ITAsset)row.DataItem;
+                // Add in the comments as the tooltip
+                row.ToolTip = ass.Comments;
 
-                LinkButton btnEdit = (LinkButton)row.Cells[8].Controls[0];
+                LinkButton btnEdit = (LinkButton)row.FindControl("Edit");
                 btnEdit.CommandArgument = ass.IdtAsset.ToString();
             }
         }

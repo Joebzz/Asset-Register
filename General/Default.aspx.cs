@@ -170,10 +170,13 @@ namespace AssetRegister
             if (row.RowType == DataControlRowType.DataRow)
             {
                 row.CssClass = "DataRow";
+                
 
                 GeneralAsset ass = (GeneralAsset)row.DataItem;
+                // Add in the comments as the tooltip
+                row.ToolTip = ass.Comments;
 
-                LinkButton btnEdit = (LinkButton)row.Cells[7].Controls[0];
+                LinkButton btnEdit = (LinkButton)row.FindControl("Edit");
                 btnEdit.CommandArgument = ass.IdtAsset.ToString();
             }
         }

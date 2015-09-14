@@ -23,11 +23,11 @@
     </div>
     <div class="DivAssetSearch">     
         <h2>Search:</h2>      
-        <label class="ddlLabel" for="tbDescriptionSearch">Description Search</label>
+        <label class="ddlLabel" for="tbDescriptionSearch">Description Search:</label>
         <asp:TextBox ID="tbSearchDescription" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearchDescription" CssClass="btn btn-info Search-btn" runat="server" OnClick="btnSearchDescription_Click" Text="Search Description" /> 
         <br />
-        <label class="ddlLabel" for="chkShowInactive">Show Inactive</label>
+        <label class="ddlLabel" for="chkShowInactive">Show Unusable / EOL:</label>
         <asp:CheckBox ID="chkShowInactive" AutoPostBack="True" Checked="false" runat="server" OnCheckedChanged="reloadAssets" />
     </div>
     <div class="DivAssetTable">
@@ -69,15 +69,7 @@
                         <ItemTemplate>
                             <asp:Label ID="lblTrack" runat="server"><%# GetTrackName((int)Eval("IdtTrack")) %></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
-                        
-                    <asp:BoundField DataField="Description" HeaderText="Description" />
-
-                    <asp:TemplateField HeaderText="Asset Type">
-                        <ItemTemplate>
-                            <asp:Label ID="lblAsset" runat="server"><%# GetAssetType((int)Eval("IdtAssetType")) %></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>                        
                         
                     <asp:TemplateField HeaderText="Location">
                         <ItemTemplate>
@@ -85,11 +77,23 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:BoundField DataField="Shipdate" HeaderText="Shipdate" DataFormatString="{0:dd-MMM-yyyy}" />
+                    <asp:TemplateField HeaderText="Asset Type">
+                        <ItemTemplate>
+                            <asp:Label ID="lblAsset" runat="server"><%# GetAssetType((int)Eval("IdtAssetType")) %></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
-                    <asp:BoundField DataField="Inactive" HeaderText="Inactive" Visible="false"/>
+                    <asp:BoundField DataField="Description" HeaderText="Description" />
 
-                    <asp:ButtonField Text="Edit" CommandName="Edit" ControlStyle-CssClass="btn btn-primary btn-nolink" HeaderText="Edit" />
+                    <asp:BoundField DataField="Other" HeaderText="Other/Serial Number etc." />
+
+                    <asp:BoundField DataField="NumAssets" HeaderText="Number of Assets" />
+                    
+                    <asp:TemplateField HeaderText="Edit">
+                        <ItemTemplate>
+                            <asp:LinkButton Text="Edit" ID="Edit" CommandName="Edit" CssClass="btn btn-primary btn-nolink" runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
