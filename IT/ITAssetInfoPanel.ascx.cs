@@ -56,6 +56,9 @@ namespace AssetRegister
                     tbHostname.Text = asset.Hostname;
                     tbIPAddress.Text = asset.IPAddress;
 
+                    tbCurrentValue.Text = asset.CurrentValue.ToString();
+                    tbCostValue.Text = asset.CostValue.ToString();
+
                     if (!asset.ShipDate.HasValue)
                         tbShipDate.Text = "";
                     else
@@ -164,6 +167,8 @@ namespace AssetRegister
                     asset.IPAddress = tbIPAddress.Text;
                     asset.ServiceTag = tbServiceTag.Text;
                     asset.ExpressCode = tbExpressCode.Text;
+                    asset.CostValue = int.Parse(tbCostValue.Text);
+                    asset.CurrentValue = int.Parse(tbCurrentValue.Text);
 
                     DateTime outDate;
                     if (!DateTime.TryParse(tbShipDate.Text, out outDate))
@@ -202,6 +207,8 @@ namespace AssetRegister
                     asset.IPAddress = tbIPAddress.Text;
                     asset.ServiceTag = tbServiceTag.Text;
                     asset.ExpressCode = tbExpressCode.Text;
+                    asset.CostValue = int.Parse(tbCostValue.Text);
+                    asset.CurrentValue = int.Parse(tbCurrentValue.Text);
 
                     DateTime outDate;
                     if (!DateTime.TryParse(tbShipDate.Text, out outDate))
