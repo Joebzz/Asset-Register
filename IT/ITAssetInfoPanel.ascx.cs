@@ -167,12 +167,19 @@ namespace AssetRegister
                     asset.IPAddress = tbIPAddress.Text;
                     asset.ServiceTag = tbServiceTag.Text;
                     asset.ExpressCode = tbExpressCode.Text;
-                    asset.CostValue = int.Parse(tbCostValue.Text);
-                    asset.CurrentValue = int.Parse(tbCurrentValue.Text);
+
+                    int costVal, curVal;
+                    if(!int.TryParse(tbCostValue.Text, out costVal))
+                        costVal = 0;
+                    if (!int.TryParse(tbCurrentValue.Text, out curVal))
+                        curVal = 0;
+
+                    asset.CostValue = costVal;
+                    asset.CurrentValue = curVal;
 
                     DateTime outDate;
                     if (!DateTime.TryParse(tbShipDate.Text, out outDate))
-                        asset.ShipDate = default(DateTime);
+                        asset.ShipDate = new DateTime(1900, 1, 1);
                     else
                         asset.ShipDate = outDate;
 
@@ -207,12 +214,19 @@ namespace AssetRegister
                     asset.IPAddress = tbIPAddress.Text;
                     asset.ServiceTag = tbServiceTag.Text;
                     asset.ExpressCode = tbExpressCode.Text;
-                    asset.CostValue = int.Parse(tbCostValue.Text);
-                    asset.CurrentValue = int.Parse(tbCurrentValue.Text);
+                    
+                    int costVal, curVal;
+                    if (!int.TryParse(tbCostValue.Text, out costVal))
+                        costVal = 0;
+                    if (!int.TryParse(tbCurrentValue.Text, out curVal))
+                        curVal = 0;
+
+                    asset.CostValue = costVal;
+                    asset.CurrentValue = curVal;
 
                     DateTime outDate;
                     if (!DateTime.TryParse(tbShipDate.Text, out outDate))
-                        asset.ShipDate = default(DateTime);
+                        asset.ShipDate = new DateTime(1900, 1, 1);
                     else
                         asset.ShipDate = outDate;
 
